@@ -1,17 +1,28 @@
 class food {
-  int x;
-  int y;
+  float x;
+  float y;
   int size;
+  boolean isEaten;
   food(int cx, int cy) {
     x = cx;
     y = cy;
     size = 5;
+    isEaten = false;
   }
   void display() {
-    fill(#524425);
-    circle(x, y, size);
+    if (!isEaten) {
+      fill(#524425);
+      circle(x, y, size);
+    }
   }
   void move() {
-    y -= 1;
+    if (y < height-size) {
+      y += 0.2;
+    }
+  }
+  void eaten() {
+    if (isEaten) {
+      t.foods.remove(this);
+    }
   }
 }

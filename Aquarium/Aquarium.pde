@@ -20,7 +20,9 @@ void draw() {
   t.moveAnimals();
   t.display();
 }
-
+void mouseClicked() {
+  t.addFood();
+}
 void keyPressed() {
   if (key == '1') {
     t.addAnimal(1);

@@ -23,6 +23,9 @@ class tank {
     for (animal animalDummy : animals) {
       animalDummy.display();
     }
+    for (food foodDummy : foods) {
+      foodDummy.display();
+    }
   }
   void moveAnimals() {
     for (animal animalDummy : animals) {
@@ -31,6 +34,9 @@ class tank {
       animalDummy.dieMove();
       animalDummy.decay();
       animalDummy.despawn();
+    }
+    for (food foodDummy : foods) {
+      foodDummy.move();
     }
   }
   void addAnimal(int a) {

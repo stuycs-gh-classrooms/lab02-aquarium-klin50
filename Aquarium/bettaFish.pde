@@ -1,24 +1,38 @@
 class bettaFish extends animal {
   float angle = 0; // angular direction
-  float turnSpeed = 0.05; 
-  float dartSpeed = 4; 
+  float turnSpeed = 0.05;
+  float dartSpeed = 4;
   boolean isDarting = false;
   int dartCount = 0; // frames between darts
   int coolDown = 120;
+  float dx;
+  float dy;
+  float speed;
 
   bettaFish(float x, float y) {
     super(x, y);
+    if (xSpeed < 0) {
+      dx = -1;
+    } else {
+      dx = 1;
+    }
+    if (ySpeed < 0) {
+      dy = -1;
+    } else {
+      dy = 1;
+    }
+    speed = xSpeed/2+ySpeed/2;
   }
-  
+
   void display() {
     if (isDarting) {
-      fill(255, 0, 0); 
+      fill(255, 0, 0);
     } else {
       fill(25, 150, 255);
     }
     square(x, y, size * 2);
   }
-  
+
   void startDart() {
     if (!isDarting && random(1) < 0.25) {
       isDarting = true;
@@ -28,29 +42,26 @@ class bettaFish extends animal {
 
     if (isDarting) {
       if (dartCount > 0) {
-        xSpeed = cos(angle) * dartSpeed;
-        ySpeed = sin(angle) * dartSpeed;
+        dx = cos(angle) * dartSpeed;
+        dy = sin(angle) * dartSpeed;
         dartCount--;
-      } 
-      else 
+      } else
       {
         isDarting = false;
         coolDown = (int)random(50, 200);
       }
-    } 
-    
-    else 
+    } else
     {
-       if (random(1) > 0.5) {
-            angle += turnSpeed;
-        } else {
-            angle -= turnSpeed; 
-        } 
-        
-      xSpeed = cos(angle) * xSpeed;
-      ySpeed = sin(angle) * ySpeed;
-      
-      if (--coolDown <= 0) 
+      if (random(1) > 0.5) {
+        angle += turnSpeed;
+      } else {
+        angle -= turnSpeed;
+      }
+
+      dx = cos(angle) * speed;
+      dy = sin(angle) * speed;
+
+      if (--coolDown <= 0)
       {
         angle += PI;
       }
@@ -60,25 +71,24 @@ class bettaFish extends animal {
   void move(int tankW, int tankH, int tankX, int tankY, int floorH) {
     startDart();
 
-    x += xSpeed;
-    y += ySpeed;
+    x += dx;
+    y += dy;
 
     if (x < tankX + size/2 || x > tankX + tankW - size/2) {
       angle += PI;
     }
     if (y < tankY + size/2 || y > tankY + tankH - floorH - size/2) {
-      angle += PI; 
+      angle += PI;
     }
 
     if (x <= tankX || x >= tankX + tankW - size) {
-      xSpeed = -xSpeed; 
-      x += xSpeed; 
+      dx = -dx;
+      x += dx * speed;
     }
 
-    if (y <= tankY || y+2*size >= height) {
-      ySpeed = -ySpeed; 
-      y += ySpeed; 
+    if (y <= tankY || y >= tankY + tankH - floorH - size) {
+      dy = -dy;
+      y += dy * speed;
     }
   }
-  
 }

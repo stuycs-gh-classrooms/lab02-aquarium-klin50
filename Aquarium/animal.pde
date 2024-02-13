@@ -31,8 +31,10 @@ class animal {
     decay = 100;
   }
   void display() {
-    fill(#9220F7);
-    square(x, y, size);
+    if (isAlive) {
+      fill(#9220F7);
+      square(x, y, size);
+    }
   }
   void move() {
     if (isAlive == true) {
@@ -57,7 +59,7 @@ class animal {
     this.isAlive = false;
   }
   void dieMove() {
-    if (isAlive == false && y < tankY) {
+    if (isAlive == false && y > tankY) {
       this.y -= 1;
     }
   }
@@ -74,8 +76,10 @@ class animal {
   void eat() {
     for (food Food : t.foods) {
       if (dist(Food.x, Food.y, this.x, this.y) < this.size/2) {
-        t.foods.remove(Food);
-        this.food += 10;
+        if (!Food.isEaten) {
+          this.food += 10;
+          Food.isEaten = true;
+        }
       }
     }
   }
