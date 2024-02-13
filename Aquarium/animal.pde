@@ -6,7 +6,7 @@ class animal {
   int hp;
   float xSpeed;
   float ySpeed;
-  animal(int ax, int ay) {
+  animal(float ax, float ay) {
     x = ax;
     y = ay;
     size = 20;

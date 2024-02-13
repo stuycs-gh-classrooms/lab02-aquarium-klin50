@@ -27,12 +27,20 @@ class tank {
       animalDummy.move();
     }
   }
-  void addAnimal() {
-    int a = int(random(0, 3));
-    if (a >1) {
-      animals.add(new crab());
-    } else {
-      animals.add(new fish(mouseX,mouseY));
+  void addAnimal(int a) {
+    if (mouseY > tankY) {
+      if (a == 1) {
+        animals.add(new fish(mouseX, mouseY));
+      }
+      if (a == 2) {
+        animals.add(new crab());
+      }
+      if (a == 3) {
+        animals.add(new bettaFish(mouseX, mouseY));
+      }
+      if (a == 4) {
+        animals.add(new shrimp(mouseX, mouseY));
+      }
     }
   }
 }

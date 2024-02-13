@@ -21,6 +21,17 @@ void draw() {
   t.display();
 }
 
-void mouseClicked() {
-  t.addAnimal();
+void keyPressed() {
+  if (key == '1') {
+    t.addAnimal(1);
+  }
+  if (key == '2') {
+    t.addAnimal(2);
+  }
+  if (key == '3') {
+    t.addAnimal(3);
+  }
+  if (key == '4') {
+    t.addAnimal(4);
+  }
 }
