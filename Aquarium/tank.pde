@@ -1,5 +1,6 @@
 class tank {
   ArrayList<animal> animals;
+  ArrayList<food> foods;
   int x;
   int y;
   int floorHeight;
@@ -7,6 +8,7 @@ class tank {
   int tankHeight;
   tank(int tx, int ty, int twidth, int theight, int fheight) {
     animals = new ArrayList<animal>();
+    foods = new ArrayList<food>();
     x = tx;
     y = ty;
     floorHeight = fheight;
@@ -24,7 +26,11 @@ class tank {
   }
   void moveAnimals() {
     for (animal animalDummy : animals) {
+      animalDummy.eat();
       animalDummy.move();
+      animalDummy.dieMove();
+      animalDummy.decay();
+      animalDummy.despawn();
     }
   }
   void addAnimal(int a) {
@@ -42,5 +48,8 @@ class tank {
         animals.add(new shrimp(mouseX, mouseY));
       }
     }
+  }
+  void addFood() {
+    foods.add(new food(mouseX, mouseY));
   }
 }

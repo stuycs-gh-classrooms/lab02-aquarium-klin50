@@ -75,7 +75,7 @@ class bettaFish extends animal {
       x += xSpeed; 
     }
 
-    if (y <= tankY || y >= tankY + tankH - floorH - size) {
+    if (y <= tankY || y+2*size >= height) {
       ySpeed = -ySpeed; 
       y += ySpeed; 
     }
