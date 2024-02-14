@@ -20,9 +20,4 @@ class food {
       y += 0.2;
     }
   }
-  void eaten() {
-    if (isEaten) {
-      t.foods.remove(this);
-    }
-  }
 }

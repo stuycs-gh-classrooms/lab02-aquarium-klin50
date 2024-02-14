@@ -3,7 +3,7 @@ class bettaFish extends animal {
   float turnSpeed = 0.05;
   float dartSpeed = 4;
   boolean isDarting = false;
-  int dartCount = 0; // frames between darts
+  int dartCount = 120; // frames between darts
   int coolDown = 120;
   float dx;
   float dy;
@@ -11,6 +11,7 @@ class bettaFish extends animal {
 
   bettaFish(float x, float y) {
     super(x, y);
+    size*=2;
     if (xSpeed < 0) {
       dx = -1;
     } else {
@@ -30,11 +31,11 @@ class bettaFish extends animal {
     } else {
       fill(25, 150, 255);
     }
-    square(x, y, size * 2);
+    square(x, y, size);
   }
 
   void startDart() {
-    if (!isDarting && random(1) < 0.25) {
+    if (!isDarting && random(25) < 0.25) {
       isDarting = true;
       dartCount = (int)random(25, 50);
       angle += PI;
@@ -68,9 +69,8 @@ class bettaFish extends animal {
     }
   }
 
-  void move(int tankW, int tankH, int tankX, int tankY, int floorH) {
+  void move() {
     startDart();
-
     x += dx;
     y += dy;
 
@@ -86,7 +86,7 @@ class bettaFish extends animal {
       x += dx * speed;
     }
 
-    if (y <= tankY || y >= tankY + tankH - floorH - size) {
+    if (y <= tankY || y >= height-floorH) {
       dy = -dy;
       y += dy * speed;
     }

@@ -47,7 +47,7 @@ class animal {
       if (x+size+xSpeed >= width || x+xSpeed <= 0) {
         xSpeed *= -1;
       }
-      if (y+size+ySpeed >= height || y+ySpeed <= tankY) {
+      if (y+size+ySpeed >= height-floorH || y+ySpeed <= tankY) {
         ySpeed *= -1;
       }
       x += xSpeed;
@@ -66,11 +66,6 @@ class animal {
   void decay() {
     if (isAlive != true) {
       decay -= 0.01;
-    }
-  }
-  void despawn() {
-    if (decay <= 0) {
-      t.animals.remove(this);
     }
   }
   void eat() {

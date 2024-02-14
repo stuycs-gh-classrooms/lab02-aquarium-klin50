@@ -33,22 +33,25 @@ class tank {
       animalDummy.move();
       animalDummy.dieMove();
       animalDummy.decay();
-      animalDummy.despawn();
     }
     for (food foodDummy : foods) {
       foodDummy.move();
     }
+    this.removeAnimal();
+    this.removeFood();
   }
   void addAnimal(int a) {
     if (mouseY > tankY) {
-      if (a == 1) {
-        animals.add(new fish(mouseX, mouseY));
+      if (mouseY < height-floorH-40) {
+        if (a == 1) {
+          animals.add(new fish(mouseX, mouseY));
+        }
+        if (a == 3) {
+          animals.add(new bettaFish(mouseX, mouseY));
+        }
       }
       if (a == 2) {
         animals.add(new crab());
-      }
-      if (a == 3) {
-        animals.add(new bettaFish(mouseX, mouseY));
       }
       if (a == 4) {
         animals.add(new shrimp(mouseX, mouseY));
@@ -57,5 +60,23 @@ class tank {
   }
   void addFood() {
     foods.add(new food(mouseX, mouseY));
+  }
+  void removeAnimal() {
+    ArrayList<animal> aDummy = new ArrayList<animal>();
+    for (animal animalDummy : animals) {
+      if (animalDummy.isAlive == true) {
+        aDummy.add(animalDummy);
+      }
+    }
+    animals = aDummy;
+  }
+  void removeFood() {
+    ArrayList<food> fDummy = new ArrayList<food>();
+    for (food foodDummy : foods) {
+      if (foodDummy.isEaten == false) {
+        fDummy.add(foodDummy);
+      }
+    }
+    foods = fDummy;
   }
 }

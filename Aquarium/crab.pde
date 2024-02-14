@@ -22,7 +22,7 @@ class crab extends animal {
       if (x+size+xSpeed >= width || x+xSpeed <= 0) {
         xSpeed *= -1;
       }
-      if (y+size+ySpeed >= height || y+ySpeed <= height-floorH) {
+      if (y+ySpeed+size/2 >= height || y+ySpeed <= height-floorH) {
         ySpeed *= -1;
       }
       x += xSpeed;
