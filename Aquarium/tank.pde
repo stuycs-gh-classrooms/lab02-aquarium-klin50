@@ -16,6 +16,7 @@ class tank {
     tankHeight = theight;
   }
   void display() {
+    println(animals.size());
     fill(#20F7E4);
     rect(x, y, tankWidth, tankHeight-floorHeight);
     fill(#f6d7b0);
@@ -55,6 +56,9 @@ class tank {
       }
       if (a == 4) {
         animals.add(new shrimp(mouseX, mouseY));
+      }
+      if (a == 5) {
+        animals.add(new piranha(mouseX, mouseY));
       }
     }
   }

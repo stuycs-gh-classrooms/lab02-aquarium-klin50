@@ -71,9 +71,12 @@ class bettaFish extends animal {
 
   void move() {
     startDart();
-    x += dx;
-    y += dy;
-
+    if (x + dx >= tankX && x + dx <= width-size) {
+      x += dx;
+    }
+    if (y + dx >= tankY && y + dx <= height - size) {
+      y += dy;
+    }
     if (x < tankX + size/2 || x > tankX + tankW - size/2) {
       angle += PI;
     }
@@ -86,7 +89,7 @@ class bettaFish extends animal {
       x += dx * speed;
     }
 
-    if (y <= tankY || y >= height-floorH) {
+    if (y <= tankY || y >= height) {
       dy = -dy;
       y += dy * speed;
     }

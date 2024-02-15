@@ -36,4 +36,7 @@ void keyPressed() {
   if (key == '4') {
     t.addAnimal(4);
   }
+  if (key == '5') {
+    t.addAnimal(5);
+  }
 }
