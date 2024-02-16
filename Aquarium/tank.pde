@@ -1,5 +1,6 @@
 class tank {
   ArrayList<animal> animals;
+  ArrayList<piranha> piranhas;
   ArrayList<food> foods;
   int x;
   int y;
@@ -9,6 +10,7 @@ class tank {
   tank(int tx, int ty, int twidth, int theight, int fheight) {
     animals = new ArrayList<animal>();
     foods = new ArrayList<food>();
+    piranhas = new ArrayList<piranha>();
     x = tx;
     y = ty;
     floorHeight = fheight;
@@ -16,13 +18,15 @@ class tank {
     tankHeight = theight;
   }
   void display() {
-    println(animals.size());
     fill(#20F7E4);
     rect(x, y, tankWidth, tankHeight-floorHeight);
     fill(#f6d7b0);
     rect(x, y+tankHeight-floorHeight, tankWidth, floorHeight);
     for (animal animalDummy : animals) {
       animalDummy.display();
+    }
+    for (piranha piranhaDummy : piranhas) {
+      piranhaDummy.display();
     }
     for (food foodDummy : foods) {
       foodDummy.display();
@@ -34,6 +38,12 @@ class tank {
       animalDummy.move();
       animalDummy.dieMove();
       animalDummy.decay();
+    }
+    for (piranha piranhaDummy : piranhas) {
+      piranhaDummy.eat();
+      piranhaDummy.move();
+      piranhaDummy.dieMove();
+      piranhaDummy.decay();
     }
     for (food foodDummy : foods) {
       foodDummy.move();
@@ -58,7 +68,7 @@ class tank {
         animals.add(new shrimp(mouseX, mouseY));
       }
       if (a == 5) {
-        animals.add(new piranha(mouseX, mouseY));
+        piranhas.add(new piranha(mouseX, mouseY));
       }
     }
   }
@@ -68,7 +78,7 @@ class tank {
   void removeAnimal() {
     ArrayList<animal> aDummy = new ArrayList<animal>();
     for (animal animalDummy : animals) {
-      if (animalDummy.isAlive == true) {
+      if (animalDummy.decayA > 0) {
         aDummy.add(animalDummy);
       }
     }

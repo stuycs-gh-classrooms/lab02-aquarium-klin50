@@ -5,20 +5,27 @@ class shrimp extends animal { // will probably change to snail later
     this.y = tankY + tankH - floorH - size * 2;
   }
 
-    void display() {
-    fill(255, 185, 195); 
-    circle(x,y,size);
+  void display() {
+    fill(255, 185, 195);
+    circle(x, y, size);
   }
-  
+
   void move() {
-
-    x += xSpeed;
-
-    if (x < tankX + size/2) {
-      x = tankX + size/2;
+    if (food <= 0) {
+      hp -= 1;
     }
-    if (x > tankX + tankW - size/2) {
-      x = tankX + tankW - size/2; 
+    if (hp <= 0) {
+      this.die();
+    }
+    if (isAlive) {
+      x += xSpeed;
+
+      if (x < tankX + size/2) {
+        x = tankX + size/2;
+      }
+      if (x > tankX + tankW - size/2) {
+        x = tankX + tankW - size/2;
+      }
     }
   }
 }

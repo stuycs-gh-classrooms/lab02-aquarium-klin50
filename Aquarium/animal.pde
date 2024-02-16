@@ -7,17 +7,17 @@ class animal {
   int hp;
   float xSpeed;
   float ySpeed;
-  float decay;
+  float decayA;
   animal(float ax, float ay) {
     x = ax;
     y = ay;
     size = 20;
     xSpeed = random(-0.5, 0.5);
     ySpeed = random(-0.5, 0.5);
-    hp = 10;
+    hp = 5;
     isAlive = true;
     food = 100;
-    decay = 100;
+    decayA = 100;
   }
   animal() {
     x = int(random(size, width-size));
@@ -28,13 +28,11 @@ class animal {
     hp = 10;
     isAlive = true;
     food = 100;
-    decay = 100;
+    decayA = 100;
   }
   void display() {
-    if (isAlive) {
       fill(#9220F7);
       square(x, y, size);
-    }
   }
   void move() {
     if (isAlive == true) {
@@ -65,7 +63,7 @@ class animal {
   }
   void decay() {
     if (isAlive != true) {
-      decay -= 0.01;
+      decayA -= 0.2;
     }
   }
   void eat() {

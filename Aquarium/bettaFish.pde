@@ -71,6 +71,13 @@ class bettaFish extends animal {
 
   void move() {
     startDart();
+    food -= 0.02;
+    if (food <= 0) {
+      hp -= 1;
+    }
+    if (hp <= 0) {
+      this.die();
+    }
     if (x + dx >= tankX && x + dx <= width-size) {
       x += dx;
     }
